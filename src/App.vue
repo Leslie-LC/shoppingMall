@@ -2,8 +2,11 @@
   <div>
     <Header></Header>
     <router-view></router-view>
-    <Footer></Footer>
-    主组件123
+    <!-- 在login、register模块隐藏 -->
+    <!-- v-show="$route.path !== '/login' && $route.path !== '/register'" -->
+    <Footer
+      v-show="$route.path == '/home' || $route.path == '/search'"
+    ></Footer>
   </div>
 </template>
 
