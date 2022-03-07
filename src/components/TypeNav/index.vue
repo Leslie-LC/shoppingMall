@@ -142,11 +142,14 @@ export default {
         } else {
           query.category3Id = category3id;
         }
-        // 整理完参数
-        console.log(location, query);
-        location.query = query;
-        // 路由跳转
-        this.$router.push(location);
+        // 如果路由跳转的时候带有params参数，也捎带传递过去
+        if (this.$route.params) {
+          location.params = this.$route.params;
+          // 整理完参数
+          location.query = query;
+          // 路由跳转
+          this.$router.push(location);
+        }
       }
     },
     // 当鼠标移入的时候，让商品分类列表进行展示
