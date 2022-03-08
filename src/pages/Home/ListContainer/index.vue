@@ -100,8 +100,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ListContainer",
+  mounted() {
+    // 派发action: 通过Vuex发起ajax请求，将数据储存到仓库中
+    this.$store.dispatch("home/getBannerList");
+  },
+  computed: {
+    ...mapState({
+      bannerLis: (state) => state.home.bannerList,
+    }),
+  },
 };
 </script>
 

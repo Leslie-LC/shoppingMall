@@ -1,16 +1,12 @@
 // import { reqCategoryList } from '@/api'
 // home模块的小仓库
-const state = {};
-const mutations = {};
-const actions = {
-    // 通过Api里面的接口函数调用，向服务器发请求，获取服务器的数据
-    categoryList() {
-        console.log(111);
-    }
-};
-const getters = {};
+import state from './state'
+import mutations from './mutations'
+import actions from './actions'
+import getters from './getters'
 
 export default {
+    namespaced: true, //命名空间
     state,
     mutations,
     actions,

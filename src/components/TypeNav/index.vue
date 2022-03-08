@@ -99,7 +99,7 @@ export default {
   },
   computed: {
     ...mapState({
-      categoryList: (state) => state.categoryList.slice(0, 16),
+      categoryList: (state) => state.home.categoryList.slice(0, 16),
     }),
   },
   methods: {
