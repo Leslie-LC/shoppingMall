@@ -5,7 +5,11 @@ const mutations = {
 
     GETBANNERLIST(state, bannerList) {
         state.bannerList = bannerList
+    },
+
+    GETFLOORLIST(state, floorList) {
+        state.floorList = floorList
     }
 }
 
-export default mutations
+export default mutations;

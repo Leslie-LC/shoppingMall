@@ -1,4 +1,3 @@
-// import { reqCategoryList } from '@/api'
 // home模块的小仓库
 import state from './state'
 import mutations from './mutations'

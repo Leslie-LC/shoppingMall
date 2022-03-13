@@ -1,4 +1,4 @@
-import { reqCategoryList, reqGetBannerList } from '@/api'
+import { reqCategoryList, reqGetBannerList, reqfloorList } from '@/api'
 
 const actions = {
     // 通过Api里面的接口函数调用，向服务器发请求，获取服务器的数据
@@ -13,6 +13,13 @@ const actions = {
         let result = await reqGetBannerList();
         if (result.code == 200) {
             commit('GETBANNERLIST', result.data)
+        }
+    },
+
+    async getfloorList({ commit }) {
+        let result = await reqfloorList();
+        if (result.code == 200) {
+            commit('GETFLOORLIST', result.data)
         }
     }
 };
