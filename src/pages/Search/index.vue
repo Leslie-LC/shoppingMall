@@ -46,23 +46,21 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li :class="{ active: isOne }" @click="changeOrder('1')">
+                  <a
+                    >综合<span v-show="isOne"
+                      ><span v-show="isAsc">↑</span
+                      ><span v-show="isDesc">↓</span></span
+                    ></a
+                  >
                 </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
+                <li :class="{ active: isTwo }" @click="changeOrder('2')">
+                  <a
+                    >价格<span v-show="isTwo"
+                      ><span v-show="isAsc">↑</span
+                      ><span v-show="isDesc">↓</span></span
+                    ></a
+                  >
                 </li>
               </ul>
             </div>
@@ -158,7 +156,7 @@ export default {
         keyword: "",
         props: [],
         trademark: "",
-        order: "",
+        order: "1:desc",
         pageNo: 1,
         pageSize: 10,
       },
@@ -181,6 +179,18 @@ export default {
     ...mapGetters({
       goodsList: "search/goodsList",
     }),
+    isOne() {
+      return this.searchParams.order.indexOf("1") != -1;
+    },
+    isTwo() {
+      return this.searchParams.order.indexOf("2") != -1;
+    },
+    isAsc() {
+      return this.searchParams.order.indexOf("asc") != -1;
+    },
+    isDesc() {
+      return this.searchParams.order.indexOf("desc") != -1;
+    },
   },
   methods: {
     // 将请求封装成函数，在需要的时候进行调用
@@ -226,6 +236,19 @@ export default {
       if (this.searchParams.props.indexOf(props) == -1) {
         this.searchParams.props.push(props);
       }
+      this.getData();
+    },
+    changeOrder(flag) {
+      let originOrder = this.searchParams.order;
+      let originFlag = this.searchParams.order.split(":")[0];
+      let originSort = this.searchParams.order.split(":")[1];
+      let newOrder = "";
+      if (flag == originFlag) {
+        newOrder = `${originFlag}:${originSort == "desc" ? "asc" : "desc"}`;
+      } else {
+        newOrder = `${flag}:${"desc"}`;
+      }
+      this.searchParams.order = newOrder;
       this.getData();
     },
   },
