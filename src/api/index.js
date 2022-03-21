@@ -15,6 +15,9 @@ export const reqGetBannerList = () => mockRequest.get('/banner');
 export const reqfloorList = () => mockRequest.get('/floor');
 
 // 当前这个接口(获取搜索模块的数据)，给服务器传递一个默认参数，至少是一个空对象
-export const reqGetSearchInfo = (params) => requests({ url: '/list', method: 'post', data: params })
+export const reqGetSearchInfo = (params) => requests({ url: '/list', method: 'post', data: params });
+
+// 获取商品详情信息
+export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: 'get' })
 
 
